@@ -21,15 +21,15 @@ public class TCPSocketConnectDiscrete implements CallBackSockets{
 	public static void main(String []args) throws InterruptedException{
 		TCPSocketConnect connect = new TCPSocketConnect();
 		connect.startServer(port,new TCPSocketConnectDiscrete());
-		while(true);//×èÈû£¬ÈÃ³ÌÐòÒ»Ö±ÔËÐÐ
+		while(true);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½Ò»Ö±ï¿½ï¿½ï¿½ï¿½
 		//connect.stopServer();
 	}
 	
 	@Override
 	public void result(Socket socket, String IP, int port) {
-		ReaderDiscrete reader = service.tcpServerConnect(socket, new CallBackDiscrete());//Á¬½ÓÉè±¸
-		service.beginInv(reader);//Á¬Ðø¶Á¿¨
-		//service.stopInv(reader);//Í£Ö¹Á¬Ðø¶Á¿¨
+		ReaderDiscrete reader = service.tcpServerConnect(socket, new CallBackDiscrete());//ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
+		service.beginInv(reader);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//service.stopInv(reader);//Í£Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		list.add(reader);
 		threadHeartbeat = new Thread(new SocketConnectStatus(socket,device));
 		threadHeartbeat.start();
