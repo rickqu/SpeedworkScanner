@@ -16,9 +16,14 @@ public class DiscreteDemo {
 			return;
 		}
 		service.beginInv(reader);	//��������
+		while (true) {
+			;
+		}
+		/*
 		Thread.sleep(100);
 		service.stopInv(reader); 	//ֹͣ��������
 		service.disconnect(reader); //�Ͽ�����,�ͷ��߳�
+	*/
 	}
 }
 
