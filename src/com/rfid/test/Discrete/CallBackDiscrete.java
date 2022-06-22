@@ -5,10 +5,10 @@ import com.rfid.callBack.CallBack.Discrete;
 class CallBackDiscrete implements Discrete {
 
 	public void result(String data, String antennaNo, String deviceNo,String communicationMode, String temperature) {
-		System.out.println("EPC " + data + " ÌìÏßºÅ: " + antennaNo + " Éè±¸ºÅ: " + deviceNo + " IP»ò´®¿ÚºÅ: " + communicationMode);
+		System.out.println("EPC " + data + " ï¿½ï¿½ï¿½ßºï¿½: " + antennaNo + " ï¿½è±¸ï¿½ï¿½: " + deviceNo + " IPï¿½ò´®¿Úºï¿½: " + communicationMode);
 	}
 
 	public void serialPortException(String name, boolean result) {
-		System.out.println( " ´®¿ÚºÅ£º " + name + " ½á¹û: " + result);
+		System.out.println( " ï¿½ï¿½ï¿½ÚºÅ£ï¿½ " + name + " ï¿½ï¿½ï¿½: " + result);
 	}
 }
