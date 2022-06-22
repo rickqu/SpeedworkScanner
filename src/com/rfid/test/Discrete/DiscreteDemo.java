@@ -17,10 +17,9 @@ public class DiscreteDemo {
 		}
 		service.beginInv(reader);	//��������
 		while (true) {
-			;
+			Thread.sleep(300);
 		}
 		/*
-		Thread.sleep(100);
 		service.stopInv(reader); 	//ֹͣ��������
 		service.disconnect(reader); //�Ͽ�����,�ͷ��߳�
 	*/
