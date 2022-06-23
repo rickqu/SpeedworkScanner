@@ -1,28 +1,25 @@
 package com.rfid.test.Discrete;
 
-import com.rfid.uhf.controller.impl.ReaderDiscrete;
-import com.rfid.uhf.service.ReaderDisService;
-import com.rfid.uhf.service.impl.ReaderDisServiceImpl;
+import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class DiscreteDemo {
-	
-	public static String IPorSerialPort = "COM3"; //IP�򴮿ں�  (ע�⣺IP��ַ��Ӧ�˿ڣ����ڶ�Ӧ������)
-	public static int portOrBaudRate = 9600;    //�˿�(Ĭ��Ϊ8000)������(Ĭ��Ϊ115200)
+
+	private static final String STOP = "STOP";
 	
 	public static void main(String[] args) throws Exception {
-		ReaderDisService service = new ReaderDisServiceImpl();
-		ReaderDiscrete reader = service.connect(IPorSerialPort, portOrBaudRate, new CallBackDiscrete());//�����豸
-		if(null == reader){
-			return;
-		}
-		service.beginInv(reader);	//��������
+		AtomicBoolean keepRunning = new AtomicBoolean(true);
+		final Thread readerThread = new Thread(new Reader(keepRunning));
+		final Scanner scanner = new Scanner(System.in);
+		readerThread.start();
 		while (true) {
-			Thread.sleep(300);
+			if (scanner.next().equals(STOP)) {
+				keepRunning.set(false);
+				scanner.close();
+				break;
+			}
 		}
-		/*
-		service.stopInv(reader); 	//ֹͣ��������
-		service.disconnect(reader); //�Ͽ�����,�ͷ��߳�
-	*/
+		readerThread.join();
 	}
 }
 
