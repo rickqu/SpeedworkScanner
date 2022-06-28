@@ -20,11 +20,11 @@ public class Reader implements Runnable {
     @Override
     public void run() {
 		ReaderDisService service = new ReaderDisServiceImpl();
-		ReaderDiscrete reader = service.connect(IPorSerialPort, portOrBaudRate, new CallBackDiscrete());//�����豸
+		ReaderDiscrete reader = service.connect(IPorSerialPort, portOrBaudRate, new CallBackDiscrete());
 		if(null == reader){
 			return;
 		}
-		service.beginInv(reader);	//��������
+		service.beginInv(reader);
 		while (keepRunning.get()) {
             try {
 			    Thread.sleep(300);
@@ -32,7 +32,7 @@ public class Reader implements Runnable {
                 ;
             }
 		}
-		service.stopInv(reader); 	//ֹͣ��������
-		service.disconnect(reader); //�Ͽ�����,�ͷ��߳�
+		service.stopInv(reader);
+		service.disconnect(reader);
     }
 }
