@@ -6,6 +6,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rfid.test.Discrete.model.RFIDScanResult;
 import com.rfid.test.Discrete.model.SerialSettings;
 
 public class ControlServiceProxy {
@@ -33,6 +34,21 @@ public class ControlServiceProxy {
 
             HttpResponse<String> response = httpClient.send(settingsRequest, HttpResponse.BodyHandlers.ofString());
             return objectMapper.readValue(response.body(), SerialSettings.class);
+        } catch (final Exception e) {
+            System.err.println("An exception was encountered whilst getting settings: " + e);
+            throw e;
+        }
+    }
+
+    public int postResult(final RFIDScanResult rfidScanResult) throws Exception {
+        try {
+            HttpRequest settingsRequest = HttpRequest.newBuilder()
+            .uri(new URI(resultUrl))
+            .POST(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(rfidScanResult)))
+            .build();
+
+            HttpResponse<String> response = httpClient.send(settingsRequest, HttpResponse.BodyHandlers.ofString());
+            return response.statusCode();
         } catch (final Exception e) {
             System.err.println("An exception was encountered whilst getting settings: " + e);
             throw e;

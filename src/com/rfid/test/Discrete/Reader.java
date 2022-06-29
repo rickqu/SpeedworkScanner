@@ -8,23 +8,28 @@ import com.rfid.test.Discrete.model.SerialSettings;
 import com.rfid.test.Discrete.proxy.ControlServiceProxy;
 import com.rfid.uhf.controller.impl.ReaderDiscrete;
 import com.rfid.uhf.service.ReaderDisService;
-import com.rfid.uhf.service.impl.ReaderDisServiceImpl;
 
 public class Reader implements Runnable {
 
     private final AtomicBoolean keepRunning;
 	private final HTTPCallbackPoster callBackDiscrete;
 	private final ControlServiceProxy controlServiceProxy;
+	private final ReaderDisService service;
 
-    public Reader(final AtomicBoolean keepRunning, final HTTPCallbackPoster callBackDiscrete, final ControlServiceProxy controlServiceProxy) {
+    public Reader(
+		final AtomicBoolean keepRunning, 
+		final HTTPCallbackPoster callBackDiscrete,
+		final ControlServiceProxy controlServiceProxy,
+		final ReaderDisService service
+	) {
         this.keepRunning = keepRunning;
 		this.callBackDiscrete = callBackDiscrete;
 		this.controlServiceProxy = controlServiceProxy;
+		this.service = service;
     }
 
     @Override
     public void run() {
-		ReaderDisService service = new ReaderDisServiceImpl();
 		final SerialSettings serialSettings;
 		try {
 			serialSettings = controlServiceProxy.getSerialSettings();
