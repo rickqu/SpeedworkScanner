@@ -27,7 +27,7 @@ public class TCPSocketConnectDiscrete implements CallBackSockets{
 	
 	@Override
 	public void result(Socket socket, String IP, int port) {
-		ReaderDiscrete reader = service.tcpServerConnect(socket, new CallBackDiscrete());//�����豸
+		ReaderDiscrete reader = service.tcpServerConnect(socket, new HTTPCallbackPoster());//�����豸
 		service.beginInv(reader);//��������
 		//service.stopInv(reader);//ֹͣ��������
 		list.add(reader);

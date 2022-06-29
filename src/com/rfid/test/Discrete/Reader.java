@@ -2,6 +2,8 @@ package com.rfid.test.Discrete;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import javax.security.auth.callback.Callback;
+
 import com.rfid.uhf.controller.impl.ReaderDiscrete;
 import com.rfid.uhf.service.ReaderDisService;
 import com.rfid.uhf.service.impl.ReaderDisServiceImpl;
@@ -12,15 +14,17 @@ public class Reader implements Runnable {
 	private static final int portOrBaudRate = 9600;    
 
     private final AtomicBoolean keepRunning;
+	private final HTTPCallbackPoster callBackDiscrete;
 
-    public Reader(final AtomicBoolean keepRunning) {
+    public Reader(final AtomicBoolean keepRunning, final HTTPCallbackPoster callBackDiscrete) {
         this.keepRunning = keepRunning;
+		this.callBackDiscrete = callBackDiscrete;
     }
 
     @Override
     public void run() {
 		ReaderDisService service = new ReaderDisServiceImpl();
-		ReaderDiscrete reader = service.connect(IPorSerialPort, portOrBaudRate, new CallBackDiscrete());
+		ReaderDiscrete reader = service.connect(IPorSerialPort, portOrBaudRate, callBackDiscrete);
 		if(null == reader){
 			return;
 		}
