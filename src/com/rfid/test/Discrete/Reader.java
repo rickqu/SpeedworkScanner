@@ -2,8 +2,6 @@ package com.rfid.test.Discrete;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javax.security.auth.callback.Callback;
-
 import com.rfid.test.Discrete.model.SerialSettings;
 import com.rfid.test.Discrete.proxy.ControlServiceProxy;
 import com.rfid.uhf.controller.impl.ReaderDiscrete;
