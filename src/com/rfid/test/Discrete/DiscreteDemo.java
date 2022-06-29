@@ -17,7 +17,7 @@ public class DiscreteDemo {
 	private static final String URL_SETTING = URL_BASE + SETTING_ENDPOINT;
 	
 	public static void main(String[] args) throws Exception {
-		AtomicBoolean keepRunning = new AtomicBoolean(true);
+		final AtomicBoolean keepRunning = new AtomicBoolean(true);
 		final HTTPCallbackPoster httpCallbackPoster = new HTTPCallbackPoster();
 		final HttpClient httpClient = HttpClient.newHttpClient();
 		final ObjectMapper objectMapper = new ObjectMapper();
@@ -26,12 +26,13 @@ public class DiscreteDemo {
 		final Thread readerThread = new Thread(reader);
 		final Scanner scanner = new Scanner(System.in);
 		final StopController stopController = new ConsoleStopController(STOP, scanner);
+
 		readerThread.start();
 
 		while (true) {
 			if (stopController.shouldStop()) {
 				keepRunning.set(false);
-				scanner.close();
+				stopController.close();
 				break;
 			}
 		}

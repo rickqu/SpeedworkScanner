@@ -16,4 +16,9 @@ public class ConsoleStopController implements StopController {
     public boolean shouldStop() {
         return scanner.next().equals(stopKeyword);
     } 
+
+    @Override
+    public void close() {
+        scanner.close();
+    }
 }
