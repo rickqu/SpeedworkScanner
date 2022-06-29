@@ -12,7 +12,7 @@ import com.rfid.test.Discrete.stopController.StopController;
 public class DiscreteDemo {
 
 	private static final String STOP = "STOP";
-	private static final String URL_BASE = "localhost/";
+	private static final String URL_BASE = "http://localhost:8030/";
 	private static final String SETTING_ENDPOINT = "localhost";
 	private static final String URL_SETTING = URL_BASE + SETTING_ENDPOINT;
 	
@@ -22,7 +22,7 @@ public class DiscreteDemo {
 		final HttpClient httpClient = HttpClient.newHttpClient();
 		final ObjectMapper objectMapper = new ObjectMapper();
 		final ControlServiceProxy controlServiceProxy = new ControlServiceProxy(URL_BASE, httpClient, objectMapper);
-		final Reader reader = new Reader(keepRunning, httpCallbackPoster);
+		final Reader reader = new Reader(keepRunning, httpCallbackPoster, controlServiceProxy);
 		final Thread readerThread = new Thread(reader);
 		final Scanner scanner = new Scanner(System.in);
 		final StopController stopController = new ConsoleStopController(STOP, scanner);

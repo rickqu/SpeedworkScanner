@@ -9,22 +9,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rfid.test.Discrete.model.SerialSettings;
 
 public class ControlServiceProxy {
-    private static final String SETTING_ENDPOINT = "/setting";
-    private static final String POST_ENDPOINT = "/post";
+    private static final String SETTING_ENDPOINT = "/settings";
+    private static final String RESULT_ENDPOINT = "/readresult";
 
     private final String settingUrl;
-    private final String postUrl;
+    private final String resultUrl;
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
 
     public ControlServiceProxy(final String baseUrl, final HttpClient httpClient, final ObjectMapper objectMapper) {
         this.settingUrl = baseUrl + SETTING_ENDPOINT;
-        this.postUrl = baseUrl + POST_ENDPOINT;
+        this.resultUrl = baseUrl + RESULT_ENDPOINT;
         this.httpClient = httpClient;
         this.objectMapper = objectMapper;
     }
 
-    public SerialSettings getSerailSettings() throws Exception {
+    public SerialSettings getSerialSettings() throws Exception {
         try {
             HttpRequest settingsRequest = HttpRequest.newBuilder()
             .uri(new URI(settingUrl))

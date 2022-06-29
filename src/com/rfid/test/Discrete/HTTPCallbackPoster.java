@@ -1,7 +1,5 @@
 package com.rfid.test.Discrete;
 
-import java.net.http.HttpClient;
-
 import com.rfid.callBack.CallBack.Discrete;
 
 class HTTPCallbackPoster implements Discrete {
