@@ -13,8 +13,6 @@ public class DiscreteDemo {
 
 	private static final String STOP = "STOP";
 	private static final String URL_BASE = "http://localhost:8030/";
-	private static final String SETTING_ENDPOINT = "localhost";
-	private static final String URL_SETTING = URL_BASE + SETTING_ENDPOINT;
 	
 	public static void main(String[] args) throws Exception {
 		final AtomicBoolean keepRunning = new AtomicBoolean(true);
