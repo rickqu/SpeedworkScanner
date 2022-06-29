@@ -42,7 +42,7 @@ public class Reader implements Runnable {
 		service.beginInv(reader);
 		while (keepRunning.get()) {
             try {
-			    Thread.sleep(300);
+			    Thread.sleep(1000);
             } catch (Exception e) {
                 ;
             }
