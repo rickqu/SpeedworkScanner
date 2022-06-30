@@ -17,6 +17,7 @@ class HTTPCallbackPoster implements Discrete {
 		final RFIDScanResult rfidScanResult = new RFIDScanResult(data, Clock.systemUTC().millis(), antennaNo, deviceNo, communicationMode, temperature);
 		try {
 			controlServiceProxy.postResult(rfidScanResult);
+			System.out.println("Logged " + rfidScanResult.toString());
 		} catch (final Exception e) {
 			System.err.println("Failed to publish scan: " + rfidScanResult + ". Reason: " + e);
 		}

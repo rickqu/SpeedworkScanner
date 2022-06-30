@@ -14,7 +14,7 @@ import com.rfid.uhf.service.impl.ReaderDisServiceImpl;
 public class DiscreteDemo {
 
 	private static final String STOP = "STOP";
-	private static final String URL_BASE = "http://localhost:8030/";
+	private static final String URL_BASE = "http://localhost:8030";
 	
 	public static void main(String[] args) throws Exception {
 		final AtomicBoolean keepRunning = new AtomicBoolean(true);
