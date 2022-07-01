@@ -44,7 +44,7 @@ public class ControlServiceProxy {
         try {
             HttpRequest settingsRequest = HttpRequest.newBuilder()
             .uri(new URI(resultUrl))
-            .header("Content-Type", "application/json")
+            .header("Content-Type", "text/plain")
             .POST(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(rfidScanResult)))
             .build();
 
