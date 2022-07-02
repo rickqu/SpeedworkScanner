@@ -14,13 +14,12 @@ import com.rfid.uhf.service.impl.ReaderDisServiceImpl;
 public class DiscreteDemo {
 
 	private static final String STOP = "STOP";
-	private static final String URL_BASE = "http://localhost:8030";
 	
 	public static void main(String[] args) throws Exception {
 		final AtomicBoolean keepRunning = new AtomicBoolean(true);
 		final HttpClient httpClient = HttpClient.newHttpClient();
 		final ObjectMapper objectMapper = new ObjectMapper();
-		final ControlServiceProxy controlServiceProxy = new ControlServiceProxy(URL_BASE, httpClient, objectMapper);
+		final ControlServiceProxy controlServiceProxy = new ControlServiceProxy(args[0], httpClient, objectMapper);
 		final HTTPCallbackPoster httpCallbackPoster = new HTTPCallbackPoster(controlServiceProxy);
 		final ReaderDisService readerDisService = new ReaderDisServiceImpl();
 		final Reader reader = new Reader(keepRunning, httpCallbackPoster, controlServiceProxy, readerDisService);
